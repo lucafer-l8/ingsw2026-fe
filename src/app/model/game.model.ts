@@ -4,20 +4,20 @@ export interface Game {
 
   barcode: string;
   title: string;
-  subtitle: string | undefined;
-  descriptione: string | undefined;
+  subtitle: string;
+  descriptione: string;
   genre: string;
   minPlayers: number;
-  maxPlayers: number | undefined;
-  minAge: number | undefined;
-  duration: Date | undefined;
+  maxPlayers: number;
+  minAge: number;
+  duration: Date;
   hasBoard: boolean;
   hasCards: boolean;
   hasDice: boolean;
   hasPieces: boolean;
   copies: number;
-  expansionOf: Game | undefined;
-  expansions: Game[] | undefined;
-  reviews: Review[] | undefined;
+  expansionOf: Game;
+  expansions: Game[];
+  reviews: Review[];
 
 }
