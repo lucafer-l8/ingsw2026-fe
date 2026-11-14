@@ -1,0 +1,20 @@
+<section class="article-list">
+
+  @for (article of filter(articles); track article.id) {
+
+    <article>
+      <h1 class="title">{{ article.title }}</h1>
+      <span class="published">
+        Pubblicato da {{ article.author }} il {{ article.published.toLocaleDateString('it-IT') }} alle {{ article.published.toLocaleDateString('it-IT') }}
+      </span>
+      @if (article.modified !== null) {
+        <span class="modified">
+          (modificato il {{ article.modified.toLocaleDateString('it-IT') }} alle {{ article.modified.toLocaleDateString('it-IT') }})
+        </span>
+      }
+      <p>{{ article.text }}</p>
+    </article>
+
+  }
+
+</section>
