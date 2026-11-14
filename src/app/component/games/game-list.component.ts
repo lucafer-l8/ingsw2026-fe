@@ -60,11 +60,11 @@ export class GameListComponent implements OnInit {
   }
 
   filter(games: Game[], letter: string, genre: string): Game[] {
-    let filteredGames: Game[] = games;
+    let filteredGames: Game[] = [...games];
     if (letter !== '')
-      filteredGames = this.filterByLetter(games, letter);
+      filteredGames = this.filterByLetter(filteredGames, letter);
     if (genre !== '')
-      filteredGames = this.filterByGenre(games, genre);
+      filteredGames = this.filterByGenre(filteredGames, genre);
     return filteredGames;
   }
 
