@@ -1,0 +1,19 @@
+<section class="filter">
+  <a href="#" (click)="selectLetter($event, '')">*</a>
+  @for (l of letters(); track l) {
+    <a href="#" (click)="selectLetter($event, l)">{{ l }}</a>
+  }
+  <br/>
+  <a href="#" (click)="selectGenre($event, '')">Tutti</a>
+  @for (g of genres(); track g) {
+    <a href="#" (click)="selectGenre($event, g)">{{ g }}</a>
+  }
+</section>
+
+<section class="game-list">
+  @for (game of filter(games, letter, genre); track game.barcode) {
+    <article>
+      <span class="title">{{ game.title }}</span>
+    </article>
+  }
+</section>

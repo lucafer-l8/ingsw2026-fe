@@ -1,0 +1,43 @@
+.index {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background-color: lightgray;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
+.index span {
+  margin-right: 0.5rem;
+}
+
+.index a {
+  color: #203d71;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.index a:hover {
+  background-color: #203d71;
+  color: white;
+  border-color: #203d71;
+}
+
+article {
+  margin: 10px;
+  padding: 0px 10px;
+  background: linear-gradient(to right, white, lightgray);
+  border: 1px solid #203d71;
+  border-radius: 3px;
+  box-shadow: 0 3px 2px dimgray;
+}
+
+article a {
+  color: #203d71;
+}
+
+#trashcan {
+  float: right;
+}
