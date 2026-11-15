@@ -2,11 +2,47 @@
   <h1>Frontend</h1>
   <nav class="clearfix">
     <a routerlink="/home">Home</a>
-    <a routerLInk="/games">Giochi</a>
-    <a routerLInk="/news">Notizie</a>
+    @if (loggedUser) {
+      <a routerLInk="/games">Giochi</a>
+      <a routerLInk="/news">Notizie</a>
+      <a href="#" (click)="logout()">Logout</a>
+    }
   </nav>
+  @if (!loggedUser) {
+    <section class="login" >
+      <form (ngSubmit)="login()" #form="ngForm">
+        <label>Username:</label>
+        <input type="text" name="username" [(ngModel)]="username" required />
+        <label>Password:</label>
+        <input type="password" name="password" [(ngModel)]="password" required />
+        <button type="submit" [disabled]="form.invalid">Ok</button>
+      </form>
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+    </section>
+  } @else {
+    welcome
+  }
 </header>
 
+<ng-template #welcome>
+  <section class="login">
+    <span>
+      Benvenuto {{ loggedUser?.name }} {{loggedUser?.surname}}
+    </span>
+  </section>
+</ng-template>
+
 <main class="clearfix">
-  <router-outlet/>
+  <router-outlet />
 </main>
+
+<footer class="clearfix">
+  <section id="privacy">
+    Luca F &copy; 2026
+    <a class="link" href="http://www.unife.it">Università degli Studi di Ferrara</a>
+    <br />
+    <a class="link" href="http://www.unife.it/ing/informazione/sistemi-web">Ingegneria dei Sistemi Web</a>
+  </section>
+</footer>
