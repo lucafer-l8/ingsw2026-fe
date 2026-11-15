@@ -5,7 +5,7 @@
     <article>
       <h1 class="title">{{ article.title }}</h1>
       <span class="published">
-        Pubblicato da {{ article.author }} il {{ article.published.toLocaleDateString('it-IT') }} alle {{ article.published.toLocaleDateString('it-IT') }}
+        Pubblicato da {{ article.authorCardNo }} il {{ article.published.toLocaleDateString('it-IT') }} alle {{ article.published.toLocaleDateString('it-IT') }}
       </span>
       @if (article.modified !== null) {
         <span class="modified">
