@@ -1,0 +1,13 @@
+@if (!loggedUser) {
+  <section>
+    <h2>Benvenuto. Fai il login.</h2>
+  </section>
+} @else {
+  welcome
+}
+
+<ng-template #welcome>
+  <section class="home">
+    <h2>Benvenuto {{loggedUser?.name}} {{loggedUser?.surname}}</h2>
+  </section>
+</ng-template>
