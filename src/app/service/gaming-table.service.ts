@@ -2,31 +2,45 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GamingTable } from '../model/gaming-table.model';
+import { SessionService } from './session.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class GamingTableService {
 
-  private apiUrl = 'http://localhost:3000/api/gaming-tables';
+  private usersUrl = 'http://localhost:3000/api/users';
+  private gamingTablesUrl = 'http://localhost:3000/api/gaming-tables';
 
-  constructor(private http: HttpClient) {}
-  
-  getAll(): Observable<GamingTable[]> {
-    return this.http.get<GamingTable[]>(this.apiUrl);
+  constructor(private http: HttpClient, private session: SessionService) {}
+
+  getGamingTables(): Observable<GamingTable[]> {
+    return this.http.get<GamingTable[]>(this.gamingTablesUrl);
   }
 
-  getById(id: string): Observable<GamingTable> {
-    return this.http.get<GamingTable>(`${this.apiUrl}/${id}`);
+  getGamingTableByInvCode(invCode: number): Observable<GamingTable> {
+    return this.http.get<GamingTable>(`${this.gamingTablesUrl}/${invCode}`);
   }
 
-  create(entity: GamingTable): Observable<GamingTable> {
-    return this.http.post<GamingTable>(this.apiUrl, entity);
+  addGamingTable(gamingTable: GamingTable): Observable<GamingTable> {
+    const loggedUser = this.session.getLoggedUser();
+    if (loggedUser) {
+      return this.http.post<GamingTable>(this.gamingTablesUrl, {
+        ...gamingTable
+      });
+    } else {
+      throw new Error('Utente non autenticato')
+    }
   }
 
-  update(id: string, entity: GamingTable): Observable<GamingTable> {
-    return this.http.put<GamingTable>(`${this.apiUrl}/${id}`, entity);
+  updateGamingTable(invCode: string, gamingTable: GamingTable): Observable<GamingTable> {
+    return this.http.put<GamingTable>(`${this.gamingTablesUrl}/${invCode}`, {
+      ...gamingTable
+    });
   }
 
-  delete(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteGamingTable(invCode: string): Observable<void> {
+    return this.http.delete<void>(`${this.gamingTablesUrl}/${invCode}`);
   }
+
 }
