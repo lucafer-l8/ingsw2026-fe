@@ -1,0 +1,18 @@
+<section class="article-form">
+  <h2>{{ edit ? 'Modifica notizia' : 'Nuova notizia' }}</h2>
+
+  <form #form="ngForm" ngSubmit="save()">
+    <label>Titolo:
+      <input name="title" [(ngModel)]="article.title" required />
+    </label>
+
+    <label>Testo:
+      <input name="text" [(ngModel)]="article.text" required />
+    </label>
+
+    <button type="button" [disabled]="form.invalid">
+      {{ edit ? 'Conferma' : 'Salva'}}
+    </button>
+    <button type="submit" (click)="cancel()" class="cancel-link">Annulla</button>
+  </form>
+</section>
